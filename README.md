@@ -1,1 +1,1 @@
-# My private linux config
+# My linux config
