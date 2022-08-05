@@ -1,1 +1,6 @@
-/home/michal/.bash_prompt
+if [ -f ~/.custom_common ]; then
+    source ~/.custom_common
+fi
+
+
+PS1='\n\[\033[00m\]╭─ $(set_git_info)\[\e[1;36m\]\] \u \[\e[0;33m\]➜ \[\e[38;5;211m\][\w] $(changes_in_branch)\n\[\033[00m\]╰▶ \$ '
