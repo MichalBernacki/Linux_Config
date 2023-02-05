@@ -1,5 +1,15 @@
 local set = vim.opt
 
+local Plug = vim.fn['plug#']
+
+vim.call('plug#begin', '~/.config/nvim/plugged')
+
+Plug 'joshdick/onedark.vim'
+
+vim.call('plug#end')
+
+vim.cmd "colorscheme onedark"
+
 set.relativenumber = true
 set.colorcolumn = "80"
 set.termguicolors = true
