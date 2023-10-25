@@ -1,5 +1,5 @@
-if [ -f ~/.custom_common ]; then
-    source ~/.custom_common
+if [ -f ~/.my_functions ]; then
+    source ~/.my_functions
 fi
 
 
