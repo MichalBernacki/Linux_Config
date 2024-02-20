@@ -7,7 +7,12 @@ function changes_in_branch {
 	    if expr length + "$(git status -s 2> /dev/null)" 2>&1 > /dev/null; then     
 	        echo -ne "\033[0;31m($(parse_git_branch))\033[0m"; 
 	    else
-	        echo -ne "\033[0;32m($(parse_git_branch))\033[0m"; fi;
+	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
+			echo -ne "\033[0;43m($(parse_git_branch))\033[0m"
+		else
+			echo -ne "\033[0;32m($(parse_git_branch))\033[0m"
+		fi
+	    fi
     fi
 }
 
@@ -18,6 +23,11 @@ function set_git_info {
 	    if expr length + "$(git status -s 2> /dev/null)" 2>&1 > /dev/null; then
 	        echo "${red}[ x ]";
 	    else
-                echo "${green}[ ✔ ]"; fi;
+	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
+			echo -ne "\033[0;43m($(parse_git_branch))\033[0m"
+		else
+                	echo "${green}[ ✔ ]"
+		fi
+	    fi
     fi
 }
