@@ -8,7 +8,7 @@ function changes_in_branch {
 	        echo -ne "\033[0;31m($(parse_git_branch))\033[0m"; 
 	    else
 	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
-			echo -ne "\033[0;43m($(parse_git_branch))\033[0m"
+			echo -ne "\033[0;33m($(parse_git_branch))\033[0m"
 		else
 			echo -ne "\033[0;32m($(parse_git_branch))\033[0m"
 		fi
@@ -24,7 +24,7 @@ function set_git_info {
 	        echo "${red}[ x ]";
 	    else
 	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
-			echo -ne "\033[0;43m([ ! ])"
+			echo -ne "\033[0;33m[ ! ]\033[0m"
 		else
                 	echo "${green}[ ✔ ]"
 		fi
