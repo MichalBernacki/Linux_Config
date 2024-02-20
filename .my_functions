@@ -11,10 +11,6 @@ function changes_in_branch {
     fi
 }
 
-function check_home_size {
-    du -h | grep -e "^[^/]*\/[^/]*$"
-}
-
 function set_git_info {
     red="$bold$(tput setaf 1)"
     green=$(tput setaf 2)
