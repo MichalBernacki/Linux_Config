@@ -1,6 +1,16 @@
-if [ -f ~/.my_functions ]; then
-    source ~/.my_functions
+if [ -f ~/.my_configs/.ps_functions ]; then
+    source ~/.my_configs/.ps_functions
+fi
+
+if [ -f ~/.my_configs/.git_functions ]; then
+    source ~/.my_configs/.git_functions
 fi
 
 
-PS1='\n\[\033[00m\]╭─ $(set_git_info)\[\e[1;36m\]\] \u \[\e[0;33m\]➜ \[\e[38;5;211m\][\w] $(changes_in_branch)\n\[\033[00m\]╰▶ \$ '
+PS1='\n\[\033[00m\]╭─'
+PS1+=' $(set_git_info)\[\e[1;36m\]\]'
+PS1+=' \u'
+PS1+=' \[\e[0;33m\]➜'
+PS1+=' \[\e[38;5;211m\][\w]'
+PS1+=' $(changes_in_branch)\n\[\033[00m\]╰▶'
+PS1+=' \$ '

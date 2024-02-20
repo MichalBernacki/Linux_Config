@@ -1,0 +1,25 @@
+function gpull {
+	git pull --rebase
+}
+
+function glog-top {
+	git log -n 1 --pretty="format:%H"
+}
+
+function gdiff {
+	git diff
+}
+
+function gcommit {
+	git add .
+	git commit --message "${1:?}"
+}
+
+function gpush {
+	git push origin $(parse_git_branch)
+}
+
+function gcompush {
+	gcommit {$1:?}
+	gpush
+}
