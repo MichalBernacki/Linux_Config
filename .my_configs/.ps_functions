@@ -24,7 +24,7 @@ function set_git_info {
 	        echo "${red}[ x ]";
 	    else
 	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
-			echo -ne "\033[0;43m($(parse_git_branch))\033[0m"
+			echo -ne "\033[0;43m([ ! ])"
 		else
                 	echo "${green}[ ✔ ]"
 		fi
