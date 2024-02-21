@@ -1,33 +1,51 @@
 function parse_git_branch {
-  git branch --no-color 2> /dev/null |  grep '^*' | colrm 1 2
+  	git branch --no-color 2> /dev/null |  grep '^*' | colrm 1 2
 }
 
+function unpushed_changes {
+	git rev-list --count @{u}..HEAD
+}
+
+function check_if_in_repo {
+	git status 2> /dev/null
+}
+
+function check_uncommitted_changes {
+	git status -s 2> /dev/null
+}
+
+TEXT_RED_COLOR="\033[0;31m"
+TEXT_YELLOW_COLOR="\033[0;33m"
+TEXT_GREEN_COLOR="\033[0;32m"
+TEXT_END_OF_COLOR="\033[0m"
+UNCOMMITTED_ERROR="[ x ]"
+UNPUSHED_WARNING="[ ! ]"
+ALL_CLEAN="[ ✔ ]"
+
 function changes_in_branch {
-    if  [[ "$(git status 2> /dev/null)" ]]; then
-	    if expr length + "$(git status -s 2> /dev/null)" 2>&1 > /dev/null; then     
-	        echo -ne "\033[0;31m($(parse_git_branch))\033[0m"; 
+    if  [[ "$(check_if_in_repo)" ]]; then
+	    if expr length + "$(check_uncommitted_changes)" 2>&1 > /dev/null; then     
+	        echo -ne "${TEXT_RED_COLOR}($(parse_git_branch))${TEXT_END_OF_COLOR}"; 
 	    else
-	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
-			echo -ne "\033[0;33m($(parse_git_branch))\033[0m"
-		else
-			echo -ne "\033[0;32m($(parse_git_branch))\033[0m"
-		fi
+	    	if [ $(unpushed_changes) -gt 0]; then
+				echo -ne "${TEXT_YELLOW_COLOR}($(parse_git_branch))${TEXT_END_OF_COLOR}"
+			else
+				echo -ne "${TEXT_GREEN_COLOR}($(parse_git_branch))${TEXT_END_OF_COLOR}"
+			fi
 	    fi
     fi
 }
 
 function set_git_info {
-    red="$bold$(tput setaf 1)"
-    green=$(tput setaf 2)
-    if  [[ "$(git status 2> /dev/null)" ]]; then
-	    if expr length + "$(git status -s 2> /dev/null)" 2>&1 > /dev/null; then
-	        echo "${red}[ x ]";
+    if  [[ "$(check_if_in_repo)" ]]; then
+	    if expr length + "$(check_uncommitted_changes)" 2>&1 > /dev/null; then
+	        echo -ne "${TEXT_RED_COLOR}${UNCOMMITTED_ERROR}${TEXT_END_COLOR}";
 	    else
-	    	if [ $(git rev-list --count @{u}..HEAD) -gt 0]; then
-			echo -ne "\033[0;33m[ ! ]\033[0m"
-		else
-                	echo "${green}[ ✔ ]"
-		fi
+	    	if [ $(unpushed_changes) -gt 0]; then
+				echo -ne "${TEXT_YELLOW_COLOR}${UNPUSHED_WARNING}${TEXT_END_COLOR}"
+			else
+            	echo -ne "${TEXT_GREEN_COLOR}${ALL_CLEAN}${TEXT_END_COLOR}"
+			fi
 	    fi
     fi
 }
