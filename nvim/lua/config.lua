@@ -3,15 +3,13 @@ local set = vim.opt
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
-
-Plug 'joshdick/onedark.vim'
+Plug 'folke/tokyonight.nvim'
 
 vim.call('plug#end')
 
-vim.cmd "colorscheme onedark"
+vim.cmd "colorscheme tokyonight-moon"
 
 set.relativenumber = true
-set.colorcolumn = "80"
 set.termguicolors = true
 
 set.mouse = "a"
