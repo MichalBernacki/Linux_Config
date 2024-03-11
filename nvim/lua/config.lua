@@ -17,10 +17,9 @@ set.nu = true
 set.errorbells = false
 
 set.tabstop = 4
-set.softtabstop = 0
 set.shiftwidth = 4
-set.expandtab = false
-set.smartindent = true
+set.expandtab
+set.softtabstop = 4
 
 set.hlsearch = false
 set.incsearch = true
