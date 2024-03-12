@@ -18,7 +18,7 @@ set.errorbells = false
 
 set.tabstop = 4
 set.shiftwidth = 4
-set.expandtab
+set.expandtab = true
 set.softtabstop = 4
 
 set.hlsearch = false
