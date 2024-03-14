@@ -7,7 +7,7 @@ Plug 'folke/tokyonight.nvim'
 
 vim.call('plug#end')
 
-vim.cmd "colorscheme tokyonight-moon"
+vim.cmd "colorscheme tokyonight-night"
 
 set.relativenumber = true
 set.termguicolors = true

@@ -2,12 +2,11 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = {}
 
-config.color_scheme = 'Tokyo Night Moon'
+config.color_scheme = 'Tokyo Night'
 
 config.audible_bell = 'Disabled'
 
 config.font_size = 13.0
-
 
 config.initial_rows = 26
 config.initial_cols = 90
