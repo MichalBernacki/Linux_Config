@@ -6,7 +6,9 @@ config.color_scheme = 'Tokyo Night'
 
 config.audible_bell = 'Disabled'
 
-config.font_size = 13.0
+config.font = wezterm.font 'JetBrains Mono'
+
+config.font_size = 13.5
 
 config.initial_rows = 26
 config.initial_cols = 90
